@@ -5,6 +5,10 @@ import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
 import App from "./App";
 
+//Запуск приложения:
+//npm run deploy - залить на хостинг
+//npm start - запуск на локалке
+
 // Init VK  Mini App
 bridge.send("VKWebAppInit");
 
