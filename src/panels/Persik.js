@@ -22,7 +22,7 @@ const Persik = props => (
 			Начало игры
 		</PanelHeader>
 		<img className="Persik" src={persik} alt="Persik The Cat"/>
-		<Text className={'cringe'}>Кринджил...</Text>
+		<Text className={'cringe'}>Кринджилл...</Text>
 	</Panel>
 );
 
