@@ -27,6 +27,11 @@ const Home = ({ id, go, fetchedUser }) => (
 					Начать игру!
 				</Button>
 			</Div>
+			<Div>
+				<Button size="xl" level="2" onClick={go} data-to="persik">
+					Правила
+				</Button>
+			</Div>
 		</Group>
 	</Panel>
 );
