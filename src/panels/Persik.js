@@ -21,6 +21,8 @@ const loadCards = () =>
 	
 const Persik = props => {
 	//const [activePanel, setActivePanel] = useState('home');
+	const [cardsArr, setCardsArr] = useState([1,2,3,4,5,6]);
+
 
 	return (
 		<Panel id={props.id}>
@@ -33,6 +35,7 @@ const Persik = props => {
 			</PanelHeader>
 			<div className={'allCardsDiv'}>
 				<Div className={'cardDiv'}>
+					{cardsArr.map(card => (
 					<div className={'card'} size="m" mode="outline">
 						<h2>Title</h2>
 						<p>1. Test text</p>
@@ -59,108 +62,7 @@ const Persik = props => {
 						{/*	</Async>*/}
 						{/*</Div>*/}
 					</div >
-
-					<div className={'card'} size="m" mode="outline">
-						<h2>Title</h2>
-						<p>1. Test text</p>
-						<p>2. Looooooong text</p>
-						<p>3. Mid size text</p>
-						{/*<Div style={{height: 96}}>*/}
-						{/*	<Async promiseFn={loadCards}>*/}
-						{/*		{({data, err, isLoading}) => {*/}
-						{/*			if (isLoading) return <Spinner/>*/}
-						{/*			if (err) return `Something went wrong: ${err.message}`*/}
-
-						{/*			if (data)*/}
-						{/*				return (*/}
-						{/*					<div>*/}
-						{/*						{data.map(card => (*/}
-						{/*							<div>*/}
-						{/*								<p>{card}</p>*/}
-						{/*							</div>*/}
-						{/*						))}*/}
-						{/*					</div>*/}
-						{/*				)*/}
-						{/*		}}*/}
-						{/*	</Async>*/}
-						{/*</Div>*/}
-					</div>
-					<div className={'card'} size="m" mode="outline">
-						<h2>Title</h2>
-						<p>1. Test text</p>
-						<p>2. Looooooong text</p>
-						<p>3. Mid size text</p>
-						{/*<Div style={{height: 96}}>*/}
-						{/*	<Async promiseFn={loadCards}>*/}
-						{/*		{({data, err, isLoading}) => {*/}
-						{/*			if (isLoading) return <Spinner/>*/}
-						{/*			if (err) return `Something went wrong: ${err.message}`*/}
-
-						{/*			if (data)*/}
-						{/*				return (*/}
-						{/*					<div>*/}
-						{/*						{data.map(card => (*/}
-						{/*							<div>*/}
-						{/*								<p>{card}</p>*/}
-						{/*							</div>*/}
-						{/*						))}*/}
-						{/*					</div>*/}
-						{/*				)*/}
-						{/*		}}*/}
-						{/*	</Async>*/}
-						{/*</Div>*/}
-					</div>
-					<div className={'card'} size="m" mode="outline">
-						<h2>Title</h2>
-						<p>1. Test text</p>
-						<p>2. Looooooong text</p>
-						<p>3. Mid size text</p>
-						{/*<Div style={{height: 96}}>*/}
-						{/*	<Async promiseFn={loadCards}>*/}
-						{/*		{({data, err, isLoading}) => {*/}
-						{/*			if (isLoading) return <Spinner/>*/}
-						{/*			if (err) return `Something went wrong: ${err.message}`*/}
-
-						{/*			if (data)*/}
-						{/*				return (*/}
-						{/*					<div>*/}
-						{/*						{data.map(card => (*/}
-						{/*							<div>*/}
-						{/*								<p>{card}</p>*/}
-						{/*							</div>*/}
-						{/*						))}*/}
-						{/*					</div>*/}
-						{/*				)*/}
-						{/*		}}*/}
-						{/*	</Async>*/}
-						{/*</Div>*/}
-					</div>
-					<div className={'card'} size="m" mode="outline">
-						<h2>Title</h2>
-						<p>1. Test text</p>
-						<p>2. Looooooong text</p>
-						<p>3. Mid size text</p>
-						{/*<Div style={{height: 96}}>*/}
-						{/*	<Async promiseFn={loadCards}>*/}
-						{/*		{({data, err, isLoading}) => {*/}
-						{/*			if (isLoading) return <Spinner/>*/}
-						{/*			if (err) return `Something went wrong: ${err.message}`*/}
-
-						{/*			if (data)*/}
-						{/*				return (*/}
-						{/*					<div>*/}
-						{/*						{data.map(card => (*/}
-						{/*							<div>*/}
-						{/*								<p>{card}</p>*/}
-						{/*							</div>*/}
-						{/*						))}*/}
-						{/*					</div>*/}
-						{/*				)*/}
-						{/*		}}*/}
-						{/*	</Async>*/}
-						{/*</Div>*/}
-					</div>
-
+						))}
 				</Div>
 			</div>
 		</Panel>
