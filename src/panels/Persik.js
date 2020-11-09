@@ -31,29 +31,138 @@ const Persik = props => {
 			>
 				Начало игры
 			</PanelHeader>
+			<div className={'allCardsDiv'}>
 				<Div className={'cardDiv'}>
-					<Card className={'card'} size="m" mode="outline">
-						<Div style={{height: 96}}>
-							<Async promiseFn={loadCards}>
-								{({data, err, isLoading}) => {
-									if (isLoading) return <Spinner/>
-									if (err) return `Something went wrong: ${err.message}`
+					<div className={'card'} size="m" mode="outline">
+						<h2>Title</h2>
+						<p>1. Test text</p>
+						<p>2. Looooooong text</p>
+						<p>3. Mid size text</p>
+						{/*<Div style={{height: 96}}>*/}
 
-									if (data)
-										return (
-											<div>
-												{data.map(card => (
-													<div>
-														<p>{card}</p>
-													</div>
-												))}
-											</div>
-										)
-								}}
-							</Async>
-						</Div>
-					</Card>
+						{/*	<Async promiseFn={loadCards}>*/}
+						{/*		{({data, err, isLoading}) => {*/}
+						{/*			if (isLoading) return <Spinner/>*/}
+						{/*			if (err) return `Something went wrong: ${err.message}`*/}
+
+						{/*			if (data)*/}
+						{/*				return (*/}
+						{/*					<div>*/}
+						{/*						{data.map(card => (*/}
+						{/*							<div>*/}
+						{/*								<p>{card}</p>*/}
+						{/*							</div>*/}
+						{/*						))}*/}
+						{/*					</div>*/}
+						{/*				)*/}
+						{/*		}}*/}
+						{/*	</Async>*/}
+						{/*</Div>*/}
+					</div >
+
+					<div className={'card'} size="m" mode="outline">
+						<h2>Title</h2>
+						<p>1. Test text</p>
+						<p>2. Looooooong text</p>
+						<p>3. Mid size text</p>
+						{/*<Div style={{height: 96}}>*/}
+						{/*	<Async promiseFn={loadCards}>*/}
+						{/*		{({data, err, isLoading}) => {*/}
+						{/*			if (isLoading) return <Spinner/>*/}
+						{/*			if (err) return `Something went wrong: ${err.message}`*/}
+
+						{/*			if (data)*/}
+						{/*				return (*/}
+						{/*					<div>*/}
+						{/*						{data.map(card => (*/}
+						{/*							<div>*/}
+						{/*								<p>{card}</p>*/}
+						{/*							</div>*/}
+						{/*						))}*/}
+						{/*					</div>*/}
+						{/*				)*/}
+						{/*		}}*/}
+						{/*	</Async>*/}
+						{/*</Div>*/}
+					</div>
+					<div className={'card'} size="m" mode="outline">
+						<h2>Title</h2>
+						<p>1. Test text</p>
+						<p>2. Looooooong text</p>
+						<p>3. Mid size text</p>
+						{/*<Div style={{height: 96}}>*/}
+						{/*	<Async promiseFn={loadCards}>*/}
+						{/*		{({data, err, isLoading}) => {*/}
+						{/*			if (isLoading) return <Spinner/>*/}
+						{/*			if (err) return `Something went wrong: ${err.message}`*/}
+
+						{/*			if (data)*/}
+						{/*				return (*/}
+						{/*					<div>*/}
+						{/*						{data.map(card => (*/}
+						{/*							<div>*/}
+						{/*								<p>{card}</p>*/}
+						{/*							</div>*/}
+						{/*						))}*/}
+						{/*					</div>*/}
+						{/*				)*/}
+						{/*		}}*/}
+						{/*	</Async>*/}
+						{/*</Div>*/}
+					</div>
+					<div className={'card'} size="m" mode="outline">
+						<h2>Title</h2>
+						<p>1. Test text</p>
+						<p>2. Looooooong text</p>
+						<p>3. Mid size text</p>
+						{/*<Div style={{height: 96}}>*/}
+						{/*	<Async promiseFn={loadCards}>*/}
+						{/*		{({data, err, isLoading}) => {*/}
+						{/*			if (isLoading) return <Spinner/>*/}
+						{/*			if (err) return `Something went wrong: ${err.message}`*/}
+
+						{/*			if (data)*/}
+						{/*				return (*/}
+						{/*					<div>*/}
+						{/*						{data.map(card => (*/}
+						{/*							<div>*/}
+						{/*								<p>{card}</p>*/}
+						{/*							</div>*/}
+						{/*						))}*/}
+						{/*					</div>*/}
+						{/*				)*/}
+						{/*		}}*/}
+						{/*	</Async>*/}
+						{/*</Div>*/}
+					</div>
+					<div className={'card'} size="m" mode="outline">
+						<h2>Title</h2>
+						<p>1. Test text</p>
+						<p>2. Looooooong text</p>
+						<p>3. Mid size text</p>
+						{/*<Div style={{height: 96}}>*/}
+						{/*	<Async promiseFn={loadCards}>*/}
+						{/*		{({data, err, isLoading}) => {*/}
+						{/*			if (isLoading) return <Spinner/>*/}
+						{/*			if (err) return `Something went wrong: ${err.message}`*/}
+
+						{/*			if (data)*/}
+						{/*				return (*/}
+						{/*					<div>*/}
+						{/*						{data.map(card => (*/}
+						{/*							<div>*/}
+						{/*								<p>{card}</p>*/}
+						{/*							</div>*/}
+						{/*						))}*/}
+						{/*					</div>*/}
+						{/*				)*/}
+						{/*		}}*/}
+						{/*	</Async>*/}
+						{/*</Div>*/}
+					</div>
+
 				</Div>
+			</div>
 		</Panel>
 	);
 }
