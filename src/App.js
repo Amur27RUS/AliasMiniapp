@@ -4,7 +4,8 @@ import View from '@vkontakte/vkui/dist/components/View/View';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
-import Persik from './panels/Persik';
+import GamePage from './panels/GamePage';
+import RulesPage from './panels/RulesPage';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('home');
@@ -18,7 +19,8 @@ const App = () => {
 	return (
 		<View activePanel={activePanel} popout={popout}>
 			<Home id='home' fetchedUser={fetchedUser} go={go} />
-			<Persik id='persik' go={go} />
+			<GamePage id='gamePage' go={go} />
+			<RulesPage id='rulesPage' go={go} />
 		</View>
 	);
 }
