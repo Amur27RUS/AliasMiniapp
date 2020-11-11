@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Async from 'react-async';
+import Swing from 'react-swing';
 import PropTypes from 'prop-types';
 import { platform, IOS, Text, Card, Spinner, Div } from '@vkontakte/vkui';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
@@ -11,7 +12,8 @@ import { properties } from '../properties.js';
 
 import persik from '../img/persik.png';
 import './Persik.css';
-
+import bridge from "@vkontakte/vk-bridge";
+let counter = 0;
 const osName = platform();
 
 const loadCards = () =>
@@ -21,8 +23,30 @@ const loadCards = () =>
 	
 const Persik = props => {
 	//const [activePanel, setActivePanel] = useState('home');
-	const [cardsArr, setCardsArr] = useState([1,2,3,4,5,6]);
+	const [cardsArr, setCardsArr] = useState(['card','card2','card33','card444','card5555','card66666']);
+	const [cardsStack, setCardsStack] = useState(['card1','card2','card3','card4','card5','card6']);
+	const [words, setWords] = useState([]);
+	const [count, setCount] = useState(counter);
 
+	useEffect(() => {
+		counter = 0;
+		//todo Здесь запрос не работает, его нужно поместить в другое место
+
+		/* fetch('https://vgorash-vk-app.herokuapp.com/api/words/5', {
+		 	method: 'GET',
+		 	headers: {
+		 		'Accept': 'application/json',
+				'Content-Type': 'application/json',
+		 		'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
+		 	}
+		 }).then(function (response) {
+		 	return response.json();
+		 }).then(function (data) {
+		 		setWords(data)
+		 	}).catch((e) => {
+		 	console.log(e);
+		 }) */
+	}, []);
 
 	return (
 		<Panel id={props.id}>
@@ -33,36 +57,29 @@ const Persik = props => {
 			>
 				Начало игры
 			</PanelHeader>
+			<div className={'counter'}>{count}</div>
 			<div className={'allCardsDiv'}>
 				<Div className={'cardDiv'}>
+					<Swing className="cardDiv"
+						   //Обработка свайпа вправо:
+						throwoutright={async e=>{
+							let cards = document.getElementsByClassName('card');
+							cards[cards.length-1].hidden = true;
+							counter++;
+							setCount(counter);
+						}}
+						throwout={e =>{
+							console.log(e);
+						}}
+					>
 					{cardsArr.map(card => (
-					<div className={'card'} size="m" mode="outline">
-						<h2>Title</h2>
-						<p>1. Test text</p>
-						<p>2. Looooooong text</p>
-						<p>3. Mid size text</p>
-						{/*<Div style={{height: 96}}>*/}
-
-						{/*	<Async promiseFn={loadCards}>*/}
-						{/*		{({data, err, isLoading}) => {*/}
-						{/*			if (isLoading) return <Spinner/>*/}
-						{/*			if (err) return `Something went wrong: ${err.message}`*/}
-
-						{/*			if (data)*/}
-						{/*				return (*/}
-						{/*					<div>*/}
-						{/*						{data.map(card => (*/}
-						{/*							<div>*/}
-						{/*								<p>{card}</p>*/}
-						{/*							</div>*/}
-						{/*						))}*/}
-						{/*					</div>*/}
-						{/*				)*/}
-						{/*		}}*/}
-						{/*	</Async>*/}
-						{/*</Div>*/}
+					<div key={card} className={'card'}>
+						{words.map(word =>(
+							<p>{word}</p>
+						))}
 					</div >
 						))}
+					</Swing>
 				</Div>
 			</div>
 		</Panel>
