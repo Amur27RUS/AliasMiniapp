@@ -17,57 +17,59 @@ import bridge from "@vkontakte/vk-bridge";
 const osName = platform();
 
 // Общее число карт
-let countVar = 1;
+let countVar = 0;
 // Количество правильных ответов
 let scoreVar = 0;
 
-let cardsMap = new Map();
+let cardsArr = [];
+let wordsArr = [];
 
+fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
+	method: 'GET'//,
+	// headers: {
+	// 	'Accept': 'application/json',
+	// 	'Content-Type': 'application/json',
+	// 	'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
+	// }
+}).then(function (response) {
+	return response.json();
+}).then(function (data) {
+	wordsArr.push(data)
+	cardsArr.push(`card${countVar}`)
+	countVar++
+}).catch((e) => {
+	console.log(e);
+});
 
 const GamePage = props => {
 	//const [activePanel, setActivePanel] = useState('home');
-	const [cards, setCards] = useState(cardsMap);
-	//const [words, setWords] = useState(wordsVar);
+	const [cards, setCards] = useState(cardsArr);
+	const [words, setWords] = useState(wordsArr);
 	const [score, setScore] = useState(scoreVar);
 	const [count, setCount] = useState(countVar);
 
-	// const foo = async () => await fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
-	// 	method: 'GET'//,
-	// 	/*headers: {
-	// 		'Accept': 'application/json',
-	// 	   'Content-Type': 'application/json',
-	// 		'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
-	// 	}*/
-   	// }).then(function (response) {
-	//    return response.json();
-  	//  }).then(function (data) {
-	//    cardsMap.set(`card${count}`, data)
-   	// }).catch((e) => {
-	// 	console.log(e);
-	// });
-	   
-	// foo()
+	// useEffect(() => {
 
-	useEffect(() => {
+	// 	const foo = async () => await fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
+	// 	 	method: 'GET'//,
+	// 	 	// headers: {
+	// 	 	// 	'Accept': 'application/json',
+	// 		// 	'Content-Type': 'application/json',
+	// 	 	// 	'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
+	// 	 	// }
+	// 	}).then(function (response) {
+	// 		return response.json();
+	// 	}).then(function (data) {
+	// 		wordsArr.push(data)
+	// 		cardsArr.push(`card${count}`)
+	// 		setWords(wordsArr)
+	// 		setCards(cardsArr)
+	// 	}).catch((e) => {
+	// 	 	console.log(e);
+	// 	});
 
-		const foo = async () => await fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
-		 	method: 'GET'//,
-		 	/*headers: {
-		 		'Accept': 'application/json',
-				'Content-Type': 'application/json',
-		 		'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
-		 	}*/
-		}).then(function (response) {
-			return response.json();
-		}).then(function (data) {
-			cardsMap.set(`card${count}`, data)
-			setCards(cardsMap)
-		}).catch((e) => {
-		 	console.log(e);
-		});
-
-		foo()
-	}, [count]);
+	// 	foo()
+	// }, [count]);
 
 	return (
 		<Panel id={props.id}>
@@ -83,25 +85,46 @@ const GamePage = props => {
 				<Div className={'cardDiv'}>
 					<Swing className="cardDiv" id="cardStack"
 						   //Обработка свайпа вправо:
-						throwoutright={async e =>{
+						throwoutright={e => {
+							let elemIndex = cardsArr.indexOf(e.target.id)
+							cardsArr.splice(elemIndex, 1)
+							wordsArr.splice(elemIndex, 1)
 							scoreVar++;
+							setWords(wordsArr)
+							setCards(cardsArr)
 							setScore(scoreVar);
-						}}
-						throwout={async e =>{
-							let cards = document.getElementsByClassName('card');
-							cards[cards.length-1].hidden = true;
-							countVar++;
-							setCount(countVar);
+						}
+						}
+						throwout={e =>{
+							fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
+								method: 'GET'//,
+								// headers: {
+								// 	'Accept': 'application/json',
+								// 	'Content-Type': 'application/json',
+								// 	'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
+								// }
+							}).then(function (response) {
+								return response.json();
+							}).then(function (data) {
+								wordsArr.push(data)
+								cardsArr.push(`card${countVar++}`)
+								setCount(countVar);
+								setWords(wordsArr)
+								setCards(cardsArr)
+							}).catch((e) => {
+								console.log(e);
+							});
 							console.log(e);
 						}}
 					>
-						{cards.forEach((key, value) => 
-							<div key={key} class={card}>
-								{value.map(word => 
-									<p>{word}</p>
-								)}
-							</div>
-						)}
+						{
+							cards.map(card => (
+								<div key={card} id={card} className={'card'}>
+									{words[cardsArr.indexOf(card)].map(word =>(
+										<p>{word}</p>
+									))}
+								</div >
+						))}
 					</Swing>
 				</Div>
 			</div>
