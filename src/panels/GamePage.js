@@ -47,29 +47,11 @@ const GamePage = props => {
 	const [words, setWords] = useState(wordsArr);
 	const [score, setScore] = useState(scoreVar);
 	const [count, setCount] = useState(countVar);
+	const [finalScore, setFinalScore] = useState(0);
 
-	// useEffect(() => {
+	useEffect(() => {
 
-	// 	const foo = async () => await fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
-	// 	 	method: 'GET'//,
-	// 	 	// headers: {
-	// 	 	// 	'Accept': 'application/json',
-	// 		// 	'Content-Type': 'application/json',
-	// 	 	// 	'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
-	// 	 	// }
-	// 	}).then(function (response) {
-	// 		return response.json();
-	// 	}).then(function (data) {
-	// 		wordsArr.push(data)
-	// 		cardsArr.push(`card${count}`)
-	// 		setWords(wordsArr)
-	// 		setCards(cardsArr)
-	// 	}).catch((e) => {
-	// 	 	console.log(e);
-	// 	});
-
-	// 	foo()
-	// }, [count]);
+	}, [count]);
 
 	return (
 		<Panel id={props.id}>
@@ -80,29 +62,25 @@ const GamePage = props => {
 			>
 				Начало игры
 			</PanelHeader>
-			<div className={'counter'}>{score}</div>
+			<div className={'counter'}>{finalScore}</div>
 			<div className={'allCardsDiv'}>
 				<Div className={'cardDiv'}>
 					<Swing className="cardDiv" id="cardStack"
 						   //Обработка свайпа вправо:
 						throwoutright={e => {
+							let finScore = finalScore;
+							finScore++;
+							setFinalScore(finScore);
+						}}
+
+						throwout={e =>{
 							let elemIndex = cardsArr.indexOf(e.target.id)
 							cardsArr.splice(elemIndex, 1)
 							wordsArr.splice(elemIndex, 1)
 							scoreVar++;
-							setWords(wordsArr)
-							setCards(cardsArr)
 							setScore(scoreVar);
-						}
-						}
-						throwout={e =>{
 							fetch('https://vgorash-vk-app.herokuapp.com/api/words/6', {
 								method: 'GET'//,
-								// headers: {
-								// 	'Accept': 'application/json',
-								// 	'Content-Type': 'application/json',
-								// 	'Access-Control-Allow-Origin': 'https://vgorash-vk-app.herokuapp.com/'
-								// }
 							}).then(function (response) {
 								return response.json();
 							}).then(function (data) {
@@ -114,14 +92,13 @@ const GamePage = props => {
 							}).catch((e) => {
 								console.log(e);
 							});
-							console.log(e);
 						}}
-					>
+						>
 						{
 							cards.map(card => (
 								<div key={card} id={card} className={'card'}>
 									{words[cardsArr.indexOf(card)].map(word =>(
-										<p>{word}</p>
+										<p key={word}>{word}</p>
 									))}
 								</div >
 						))}
